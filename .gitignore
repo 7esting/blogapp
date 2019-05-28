@@ -1,0 +1,15 @@
+# ignore git dir
+.git/
+
+# ignore python non-app files
+*.pyc
+*.pyo
+__pycache__/
+
+# ignore all logs
+*.log
+logs/
+
+# ignore python virtual environment
+pyvenv/
+
