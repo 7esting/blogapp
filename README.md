@@ -1,4 +1,4 @@
-## Blob App
+## Blog App
 ```
 blogApp/
 ├── app/  # Directory for app source files
