@@ -74,7 +74,7 @@ IdentityFile ~/.ssh/github-blogapp-rsa
 ```
 ssh git@github.com
 PTY allocation request failed on channel 0
-Hi 7esting/django_tdd! You`ve successfully authenticated, but GitHub does not provide shell access.
+Hi 7esting/blogapp! You`ve successfully authenticated, but GitHub does not provide shell access.
 Connection to github.com closed.
 ```
 
