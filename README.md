@@ -70,7 +70,7 @@ RSAAuthentication yes
 IdentityFile ~/.ssh/github-blogapp-rsa
 ```
 
-**Test github connection**
+**Test GitHub connection from OS user which will do commits**
 ```
 ssh git@github.com
 PTY allocation request failed on channel 0
