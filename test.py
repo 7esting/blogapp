@@ -1,4 +1,4 @@
-
+#!/mnt/c/opt/git_repo/blogApp/pyvenv/bin/python
 from pathlib import Path, PurePath, PurePosixPath, PureWindowsPath
 import os
 
