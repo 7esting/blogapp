@@ -18,3 +18,12 @@ print(PureWindowsPath(__file__))
 
 print('__name__ ', __name__)
 print('__package__ ', __package__)
+
+# The Zen of python
+''' 1. Beautiful is better than ugly.
+2. Explicit is better than implicit.
+3. Simple is better than complex.
+4. Complex is better than complicated. '''
+
+
+    
