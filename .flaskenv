@@ -1,2 +1,7 @@
 FLASK_APP=microblog.py
-FLASK_ENV=development
+#FLASK_ENV=development
+MAIL_SERVER=localhost
+MAIL_USE_TLS=0
+MAIL_USERNAME=hector
+MAIL_PASSWORD=
+MAIL_PORT=25
