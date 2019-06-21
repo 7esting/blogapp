@@ -24,11 +24,6 @@ blogApp/
 └── requirements.txt
 ```
 
-### Notes
-Circular dependencies
-
-Chaining decorator functions
-
 # Versioning with Git & GitHub
 
 ## Initialize the project root and add files to master repo :
