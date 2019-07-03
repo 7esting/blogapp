@@ -8,7 +8,17 @@
                 <h1>User: {{ user.username }}</h1>
                 {% if user.about_me %}<p>{{ user.about_me }}</p>{% endif %}
                 {% if user.last_seen %}<p>Last seen on: {{ user.last_seen }}</p>{% endif %}
-                <a href="{{ url_for('edit_profile') }}">Edit Profile</a>
+                <p>
+                    Followers [{{ user.followers.count() }}]
+                    <br>Following [{{ user.followed.count() }}]
+                </p>
+                {% if user == current_user %}
+                <p><a href="{{ url_for('edit_profile') }}">Edit Profile</a></p>
+                {% elif not current_user.is_following(user) %}
+                <p><a href="{{ url_for('follow', username=user.username) }}">Follow {{ user.username }}</a></p>
+                {% else %}
+                <p><a href="{{ url_for('unfollow', username=user.username) }}">Unfollow {{ user.username }}</a></p>
+                {% endif %}
             </td>
         </tr>
     </table>

@@ -5,8 +5,8 @@ from werkzeug.urls import url_parse
 from flask_login import current_user, login_user, logout_user, login_required
 from app import app
 from app import db
-from app.forms import LoginForm, RegistrationForm, EditProfileForm
-from app.models import User
+from app.forms import LoginForm, RegistrationForm, EditProfileForm, PostForm
+from app.models import User, Post
 
 @app.before_request
 def before_request():
@@ -14,21 +14,29 @@ def before_request():
         current_user.last_seen = datetime.utcnow()
         db.session.commit()
 
-@app.route('/')
-@app.route('/index')
+@app.route('/', methods=['GET', 'POST'])
+@app.route('/index', methods=['GET', 'POST'])
 @login_required  # This decorator Protects routes
 def index():
-    posts = [
-        {
-            'author': {'username': 'Fanti'},
-            'body': 'If you educate a man you educate an individual, but if you educate a woman you educate a family (nation)'
-        },
-        {
-            'author': {'username': 'Chilavert'},
-            'body': 'Humilde pero no sumiso.'
-        }
-    ]
-    return render_template('index.html', title='Home', posts=posts)
+    form = PostForm()
+    if form.validate_on_submit():
+        post = Post(body=form.post.data, author=current_user)
+        db.session.add(post)
+        db.session.commit()
+        flash('Your comment has been posted!')
+        return redirect(url_for('index'))
+    # posts = [
+    #     {
+    #         'author': {'username': 'Fanti'},
+    #         'body': 'If you educate a man you educate an individual, but if you educate a woman you educate a family (nation)'
+    #     },
+    #     {
+    #         'author': {'username': 'Chilavert'},
+    #         'body': 'Humilde pero no sumiso.'
+    #     }
+    # ]
+    posts = current_user.followed_posts().all()
+    return render_template('index.html', title='Home', form=form, posts=posts)
 '''
 @app.route('/<name>')
 def hello_name(name):
@@ -99,3 +107,33 @@ def edit_profile():
         form.about_me.data = current_user.about_me
     return render_template('edit_profile.html', title='Edit Profile',
                                 form=form)
+
+@app.route('/follow/<username>')
+@login_required
+def follow(username):
+    user = User.query.filter_by(username=username).first()
+    if user is None:
+        flash('User {} not found.'.format(username))
+        return redirect(url_for('index'))
+    if user == current_user:
+        flash('You cannot follow yourself!')
+        return redirect(url_for('user', username=username))
+    current_user.follow(user)
+    db.session.commit()
+    flash('You are following {}!'.format(username))
+    return redirect(url_for('user', username=username))
+
+@app.route('/unfollow/<username>')
+@login_required
+def unfollow(username):
+    user = User.query.filter_by(username=username).first()
+    if user is None:
+        flash('User {} not found.'.format(username))
+        return redirect(url_for('index'))
+    if user == current_user:
+        flash('You cannot follow yourself!')
+        return redirect(url_for('user', username=username))
+    current_user.unfollow(user)
+    db.session.commit()
+    flash('You are not following {}.'.format(username))
+    return redirect(url_for('user', username=username))
