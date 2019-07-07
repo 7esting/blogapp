@@ -64,4 +64,32 @@ git checkout -b v0.9
 ```
 
 From local dev machine
-
+git remote show origin
+* remote origin
+  Fetch URL: git@github.com:7esting/blogapp.git
+  Push  URL: git@github.com:7esting/blogapp.git
+  HEAD branch: master
+  Remote branch:
+    master tracked
+  Local branch configured for 'git pull':
+    master merges with remote master
+  Local ref configured for 'git push':
+    master pushes to master (up to date)
+git branch -a
+* master
+git checkout -b blogApp_v0.2
+git branch -a
+* blogApp_v0.2
+  master
+  remotes/origin/master
+git remote show origin
+* remote origin
+  Fetch URL: git@github.com:7esting/blogapp.git
+  Push  URL: git@github.com:7esting/blogapp.git
+  HEAD branch: master
+  Remote branch:
+    master tracked
+  Local branch configured for 'git pull':
+    master merges with remote master
+  Local ref configured for 'git push':
+    master pushes to master (up to date)
