@@ -55,7 +55,7 @@ user1.followed.all()
 []
 ```
 
-**GitHub**
+## GitHub
 >Cloning blog app to a new directory called blog-v9
 and checking out version 0.9 into a branch to avoid a detached HEAD state.
 ```
@@ -63,7 +63,10 @@ git clone https://github.com/7esting/blog blog-v9
 git checkout -b v0.9
 ```
 
-From local dev machine
+**From local dev machine**
+>At this point stop committing changes to "master" branch and create a new branch
+"blogApp_v0.2"  Commit new updates to this new branch.
+```
 git remote show origin
 * remote origin
   Fetch URL: git@github.com:7esting/blogapp.git
@@ -95,5 +98,26 @@ git remote show origin
     master pushes to master (up to date)
 
 git add -A
-git commit "First commit to blogApp_v0.2 branch"
+git commit -am "First commit to blogApp_v0.2 branch"
 git push --set-upstream origin blogApp_v0.2
+
+git remote show origin
+* remote origin
+  Fetch URL: git@github.com:7esting/blogapp.git
+  Push  URL: git@github.com:7esting/blogapp.git
+  HEAD branch: master
+  Remote branches:
+    blogApp_v0.2 tracked
+    master       tracked
+  Local branches configured for 'git pull':
+    blogApp_v0.2 merges with remote blogApp_v0.2
+    master       merges with remote master
+  Local refs configured for 'git push':
+    blogApp_v0.2 pushes to blogApp_v0.2 (up to date)
+    master       pushes to master       (up to date)
+git branch -a
+* blogApp_v0.2
+  master
+  remotes/origin/blogApp_v0.2
+  remotes/origin/master
+```
