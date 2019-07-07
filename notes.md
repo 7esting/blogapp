@@ -62,3 +62,6 @@ and checking out version 0.9 into a branch to avoid a detached HEAD state.
 git clone https://github.com/7esting/blog blog-v9
 git checkout -b v0.9
 ```
+
+From local dev machine
+
