@@ -22,6 +22,9 @@ class Config(object):
     MAIL_PASSWORD = os.environ.get('MAIL_PASSWORD')
     ADMINS = ['hector@localhost']
 
+    # Pagination
+    POSTS_PER_PAGE = 3
+
 # Environment obj not usable yet
 class ProductionConfig(Config):
     DEBUG = False
