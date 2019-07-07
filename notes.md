@@ -93,3 +93,7 @@ git remote show origin
     master merges with remote master
   Local ref configured for 'git push':
     master pushes to master (up to date)
+
+git add -A
+git commit "First commit to blogApp_v0.2 branch"
+git push --set-upstream origin blogApp_v0.2
