@@ -63,6 +63,41 @@ git clone https://github.com/7esting/blog blog-v9
 git checkout -b v0.9
 ```
 
+**New local development machine**
+1. Add local private ssh key
+    ```
+    /home/hector/.ssh/config
+    # GitHub.com
+    Host github
+    HostName github.com
+    IdentityFile /home/hector/.ssh/hector_priv_key
+    User git
+    Port 22
+    ```
+2. Add ssh public key to github
+3. Test ssh connection to github
+    ```
+    ssh github
+    ```
+4. Clone repo over https
+    ```
+    git clone https://github.com/7esting/blogApp.git
+    ```
+5. Switch from master to dev-branch
+    ```
+    git checkout dev-branch
+    ```
+6. Create python virtual environment
+    ```
+    python3 -m venv $(pwd)/pyvenv
+    ```
+7. Activate python virtual environment and install requirements
+    ```
+    source pyvenv/bin/activate
+    pip install -r requirements.txt
+    ```
+
+
 **From local dev machine**
 >At this point stop committing changes to "master" branch and create a new branch
 "blogApp_v0.2"  Commit new updates to this new branch.

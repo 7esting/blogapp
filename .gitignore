@@ -13,3 +13,6 @@ logs/
 # ignore python virtual environment
 pyvenv/
 .flaskenv
+
+# ignore worktools
+a
