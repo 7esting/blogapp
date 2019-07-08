@@ -68,7 +68,7 @@ git checkout -b v0.9
     ```
     /home/hector/.ssh/config
     # GitHub.com
-    Host github
+    Host github.com
     HostName github.com
     IdentityFile /home/hector/.ssh/hector_priv_key
     User git
