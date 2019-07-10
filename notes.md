@@ -77,7 +77,10 @@ git checkout -b v0.9
 2. Add ssh public key to github
 3. Test ssh connection to github
     ```
-    ssh github
+    ssh git@github.com
+    cd ~/blogapp/
+    git status
+    git ls-remote
     ```
 4. Clone repo over https
     ```
