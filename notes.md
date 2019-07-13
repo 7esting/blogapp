@@ -55,6 +55,16 @@ user1.followed.all()
 []
 ```
 
+## Email
+flask shell
+from flask_mail import Message
+from app import mail
+msg = Message('test subject', sender=app.config['ADMINS'][0],
+recipients=['sam@centos.teto.com'])
+msg.body = 'text body'
+msg.html = '<h1>HTML body</h1>'
+mail.send(msg)
+
 ## GitHub
 >Cloning blog app to a new directory called blog-v9
 and checking out version 0.9 into a branch to avoid a detached HEAD state.
