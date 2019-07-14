@@ -32,6 +32,15 @@ u = User.query.get(1)
 u
 <User john>
 ```
+**Update email**
+```
+u = User.query.get(4)
+u
+<User sam>
+u.email='sam@centos.teto.com'
+db.session.commit()
+```
+
 **Database migrations**
 ```
 flask db --help
@@ -169,3 +178,28 @@ git branch -a
   remotes/origin/blogApp_v0.2
   remotes/origin/master
 ```
+
+
+>>> import jwt
+>>> token = jwt.encode({'a': 'b'}, 'my-secret', algorithm='HS256')
+>>> token
+b'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhIjoiYiJ9.dvOo58OBDHiuSHD4uW88nfJikhYAXc_sfUHq1mDi4G0'
+>>> jwt.decode(token, 'my-secret', algorithms=['HS256'])
+{'a': 'b'}
+>>> jwt.decode(token, 'my-secret1', algorithms=['HS256'])
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+  File "/home/hector/blogapp/pyvenv/lib64/python3.6/site-packages/jwt/api_jwt.py", line 92, in decode
+    jwt, key=key, algorithms=algorithms, options=options, **kwargs
+  File "/home/hector/blogapp/pyvenv/lib64/python3.6/site-packages/jwt/api_jws.py", line 156, in decode
+    key, algorithms)
+  File "/home/hector/blogapp/pyvenv/lib64/python3.6/site-packages/jwt/api_jws.py", line 223, in _verify_signature
+    raise InvalidSignatureError('Signature verification failed')
+jwt.exceptions.InvalidSignatureError: Signature verification failed
+>>> u = User.query.get(1)
+>>> u
+<User Hector>
+>>> u.get_reset_password_token()
+'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJyZXNldF9wYXNzd29yZCI6MSwiZXhwIjoxNTYzMDY5MzIyLjY5NjUwNX0.6rQvtsapJn_hHRYyirLDnIptUBFcgTGLchuD5iMhKqc'
+>>> User.verify_reset_password_token(u.get_reset_password_token())
+<User Hector>
