@@ -1,16 +1,27 @@
 {% extends "layout.html" %}
+{% import 'bootstrap/wtf.html' as wtf %}
 
-{% block content %}
+{% block app_content %}
     <h1>Sign In</h1>
-    <form action="" method="post" novalidate>
-        <!-- 
+    <div class="row">
+        <div class="col-md-4">
+            {{ wtf.quick_form(form) }}
+        </div>
+    </div>
+    <br>
+    <p>New User? <a href="{{ url_for('register') }}">Click to Register!</a></p>
+    <p>
+        Forgot Your Password?
+        <a href="{{ url_for('reset_password_request') }}">Click to Reset It</a>
+    </p>
+
+    <!-- <form action="" method="post" novalidate>
             Grab SECRET_KEY to pretect against against cross-site request forgery (CSRF) attacks 
             The form.hidden_tag() template argument generates a hidden field that includes a token
             that is used to protect the form against CSRF attacks. All you need to do to have the
             form protected is include this hidden field and have the SECRET_KEY variable defined in
             the Flask configuration. If you take care of these two things, Flask-WTF does the rest
             for you.
-        -->
         {{ form.hidden_tag() }}
         <p>
             {{ form.username.label }}<br>
@@ -29,6 +40,6 @@
         <p>{{ form.remember_me() }} {{ form.remember_me.label }}</p>
         <p>{{ form.submit() }}</p>
         <p>New user? <a href="{{ url_for('register') }}">Click to register!</a></p>
-        <!-- <p><a href="{{ url_for('reset_password_request') }}">Forgot password?</a></p> -->
-    </form>
+        <p><a href="{{ url_for('reset_password_request') }}">Forgot password?</a></p>
+    </form> -->
 {% endblock %}
