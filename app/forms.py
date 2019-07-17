@@ -9,7 +9,8 @@ from app.models import User
 class LoginForm(FlaskForm):
     # [This field is required.] is from validators=[DataRequired()]
     username = StringField('Username', validators=[DataRequired()])
-    password = PasswordField('Password', validators=[DataRequired()])
+    password = PasswordField('Password&nbsp;&nbsp;&nbsp;&nbsp;<a href="/reset_password_request">Forgot password?</a>',
+                                validators=[DataRequired()])
     remember_me = BooleanField('Remember me')
     submit = SubmitField('Sign In')
 
