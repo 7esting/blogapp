@@ -1,8 +1,14 @@
- 
-<!-- <link rel="stylesheet" href="{{ url_for('static', filename='css/Footer-white.css') }}"> -->
-<link rel="shortcut icon" href="{{ url_for('static', filename='img/Blog.ico')}}">
+{% extends 'bootstrap/base.html' %} 
 
-{% extends 'bootstrap/base.html' %}
+
+{% block head %}
+    {{super()}}
+        {% block favicon %}
+            <!-- <link rel="stylesheet" href="{{ url_for('static', filename='css/Footer-white.css') }}"> -->
+            <link rel="shortcut icon" href="{{ url_for('static', filename='img/Blog.ico')}}">
+        {% endblock %}
+{% endblock %}
+
 
 {% block title %}
     {% if title %}{{ title }} - Blog{% else %}Welcome to Blog{% endif %}
@@ -39,6 +45,7 @@
 {% endblock %}
 
 {% block content %}
+{{ super()}}
     <div class="container">
         {% with messages = get_flashed_messages() %}
         {% if messages %}
@@ -51,6 +58,20 @@
         {# application content needs to be provided in the app_content block #}
         {% block app_content %}{% endblock %}
     </div>
+
+    <br><br><br><br>
+    {% block footer %}
+        <footer>
+           <nav class="navbar navbar-default navbar-fixed-bottom">
+                <div class="container">
+                    <br>
+                    <p>&copy; 2019 Blog  -- Powered by Flask {% if platf %} on {{ platf }} {% endif %}
+                        | Adapted from <a href="https://courses.miguelgrinberg.com/p/flask-mega-tutorial" target="_blank">Miguel Grinber's Flask Mega-Tutorial</a>
+                    </p>
+                </div>
+            </nav>
+        </footer>
+    {% endblock footer %}
 {% endblock %}
 
 {% block scripts %}

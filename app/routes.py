@@ -10,6 +10,7 @@ from app.forms import LoginForm, RegistrationForm, EditProfileForm, PostForm, \
 from app.models import User, Post
 from app.email import send_password_reset_email
 
+import platform
 
 @app.before_request
 def before_request():
@@ -23,6 +24,7 @@ def before_request():
 @login_required  # This decorator Protects routes
 def index():
     form = PostForm()
+    platf = platform.linux_distribution()
     if form.validate_on_submit():
         post = Post(body=form.post.data, author=current_user)
         db.session.add(post)
@@ -49,7 +51,7 @@ def index():
     return render_template('index.html', title='Home', form=form,
                             posts=posts.items,
                             next_url=next_url,
-                            prev_url=prev_url)
+                            prev_url=prev_url, platf=platf)
 
 
 @app.route('/explore')
