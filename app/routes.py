@@ -140,15 +140,17 @@ def user(username):
 @app.route('/edit_profile', methods=['GET', 'POST'])
 @login_required
 def edit_profile():
-    form = EditProfileForm(current_user.username)
+    form = EditProfileForm(current_user.username, current_user.email)
     if form.validate_on_submit():
         current_user.username = form.username.data
+        current_user.email = form.email.data
         current_user.about_me = form.about_me.data
         db.session.commit()
         flash('Your changes have been saved.')
         return redirect(url_for('edit_profile'))
     elif request.method == 'GET':
         form.username.data = current_user.username
+        form.email.data = current_user.email
         form.about_me.data = current_user.about_me
     return render_template('edit_profile.html', title='Edit Profile',
                                 form=form)
@@ -195,7 +197,9 @@ def reset_password_request():
         user = User.query.filter_by(email=form.email.data).first()
         if user:
             send_password_reset_email(user)
-        flash('Check your email for instructions on how to reset your password.')
+            flash('Check your email for instructions on how to reset your password.')
+        elif user is None:
+            flash('Your email was not found on this system!')
         return redirect(url_for('login'))
     return render_template('reset_password_request.html', title='Reset Password', form=form)
 
