@@ -4,6 +4,7 @@ Circular dependencies
 
 Chaining decorator functions
 
+
 **Access database from Flask shell**
 ```
 flask shell
@@ -28,9 +29,27 @@ for u in users:
 1 john
 2 susan
 
-u = User.query.get(1)
+u = User.query.get(4)
 u
-<User john>
+<User sam>
+u.username
+'sam'
+u.email
+'sam@centos.teto.com'
+u = User.query.filter(User.username == 'Ana').first()
+u
+<User Ana>
+u.email
+'ana@centos.teto.com'
+
+users = User.query.all()
+for usrs in users:
+   print(usrs.username)
+
+Hector
+elena
+Ana
+sam
 ```
 **Update email**
 ```

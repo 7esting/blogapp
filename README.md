@@ -48,7 +48,7 @@ git config --global user.name "Sam"
 git config --global user.email "your@email.com"
 ```
 **Update working tree** `$ git add -A`
-**Commit to local branch master** `git commit -m "First commit"`
+**Commit to local branch master** `git commit -am "First commit"`
 ```
 ssh-keygen -t rsa -b 4096 -C your@email.com
 ```

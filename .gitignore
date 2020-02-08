@@ -15,4 +15,8 @@ pyvenv/
 .flaskenv
 
 # ignore worktools
-a
+os_aliases
+.vscode
+notes.md
+git_cheatsheet.txt
+github_api.txt
