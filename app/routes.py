@@ -3,6 +3,7 @@ from flask import request
 from flask import render_template, flash, redirect, url_for
 from werkzeug.urls import url_parse
 from flask_login import current_user, login_user, logout_user, login_required
+from flask_babel import _, get_locale
 from app import app
 from app import db
 from app.forms import LoginForm, RegistrationForm, EditProfileForm, PostForm, \
@@ -29,7 +30,7 @@ def index():
         post = Post(body=form.post.data, author=current_user)
         db.session.add(post)
         db.session.commit()
-        flash('Your comment has been posted!')
+        flash(_('Your comment has been posted!'))
         return redirect(url_for('index'))
     # posts = [
     #     {
@@ -163,7 +164,8 @@ def edit_profile():
 def follow(username):
     user = User.query.filter_by(username=username).first()
     if user is None:
-        flash('User {} not found.'.format(username))
+        #flash('User {} not found.'.format(username))
+        flash(_('User %(username)s not found.', username=username))
         return redirect(url_for('index'))
     if user == current_user:
         flash('You cannot follow yourself!')
